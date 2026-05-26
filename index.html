@@ -1,30 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Love ❤️</title>
     <style>
-        body { background: black; color: white; text-align: center; font-family: Arial; padding-top: 20%; }
-        button { padding: 20px; font-size: 20px; border-radius: 10px; cursor: pointer; background: red; color: white; border: none; }
+        body { 
+            background: black; 
+            color: white; 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 { font-size: 28px; margin-bottom: 20px; color: #ff4d4d; }
+        button { 
+            padding: 15px 30px; 
+            font-size: 18px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            background: linear-gradient(45deg, #ff4d4d, #f9cb28); 
+            color: white; 
+            border: none; 
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+        }
+        .heart { font-size: 50px; margin-top: 20px; animation: pulse 1s infinite; }
+        @keyframes pulse { to { transform: scale(1.2); } }
     </style>
 </head>
 <body>
+
     <h1>For My Love ❤️</h1>
     
-    <audio id="player" controls style="display:none;">
-        <source src="song.mp3" type="audio/mpeg">
+    <audio id="player" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <button onclick="play()">Play Music 🎵</button>
+    <button onclick="playMusic()" id="btn">Play Song 🎵</button>
+    <div class="heart">❤️</div>
 
     <script>
-        function play() {
+        function playMusic() {
             var audio = document.getElementById("player");
-            audio.play().then(() => {
-                alert("Playing! Audio kekkutha macha?");
-            }).catch(e => {
-                alert("Error: Song file ah GitHub la check pannu!");
-                console.log(e);
-            });
+            var btn = document.getElementById("btn");
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "Pause ⏸️";
+            } else {
+                audio.pause();
+                btn.innerHTML = "Play Song 🎵";
+            }
         }
     </script>
 </body>
