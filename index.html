@@ -1,56 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Love ❤️</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: black;
-            font-family: Arial;
-            overflow: hidden;
+            background: #000;
+            font-family: 'Arial', sans-serif;
             color: white;
-            text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            text-align: center;
         }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 30px;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ff4d4d;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        #playBtn {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
             border: none;
-            cursor: pointer;
-            background: linear-gradient(45deg, #ff4d4d, #ff9999);
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff4d4d, #f9cb28);
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
-            transition: 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+            transition: 0.3s ease;
         }
-        button:hover {
+
+        #playBtn:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        .heart {
+            color: #ff4d4d;
+            font-size: 50px;
+            margin-top: 20px;
+            animation: beat 1s infinite alternate;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.2); }
         }
     </style>
 </head>
 <body>
 
-    <h1>For My Love ❤️</h1>
+    <div class="container">
+        <h1>For My Love ❤️</h1>
+        
+        <audio id="mySong" loop>
+            <source src="./song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
 
-    <audio id="mySong" loop>
-        <source src="song.mp3" type="audio/mpeg">
-    </audio>
+        <button onclick="playMusic()" id="playBtn">Play Music 🎵</button>
 
-    <button onclick="playMusic()" id="playBtn">
-        Play Music 🎵
-    </button>
+        <div class="heart">❤️</div>
+    </div>
 
     <script>
         function playMusic() {
             var audio = document.getElementById("mySong");
             var btn = document.getElementById("playBtn");
+            
             if (audio.paused) {
-                audio.play();
+                audio.play().catch(function(error) {
+                    console.log("Error playing audio: ", error);
+                    alert("Song file check pannu macha! 'song.mp3' nu irukanum.");
+                });
                 btn.innerHTML = "Pause Music ⏸️";
             } else {
                 audio.pause();
