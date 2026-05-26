@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        h1 { font-size: 30px; margin-bottom: 20px; color: #ff4d4d; }
+        
+        #playBtn {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #ff4d4d, #f9cb28);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.5);
+        }
+        .heart { font-size: 50px; margin-top: 20px; animation: pulse 1s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>For My Love ❤️</h1>
+
+    <audio id="loveSong" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button onclick="togglePlay()" id="playBtn">Play Music 🎵</button>
+    <div class="heart">❤️</div>
+
+    <script>
+        function togglePlay() {
+            var myAudio = document.getElementById("loveSong");
+            var btn = document.getElementById("playBtn");
+            
+            if (myAudio.paused) {
+                myAudio.play().then(() => {
+                    btn.innerHTML = "Pause Music ⏸️";
+                }).catch(error => {
+                    alert("Macha, GitHub-la 'music.mp3' file upload aairukanu oru vaati check pannu!");
+                });
+            } else {
+                myAudio.pause();
+                btn.innerHTML = "Play Music 🎵";
+            }
+        }
+    </script>
+
+</body>
+</html>
