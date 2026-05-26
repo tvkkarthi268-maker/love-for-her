@@ -1,60 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Love ❤️</title>
     <style>
-        body { 
-            background: black; 
-            color: white; 
-            text-align: center; 
-            font-family: Arial, sans-serif; 
+        body {
+            margin: 0;
+            background: #000;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            text-align: center;
         }
-        h1 { font-size: 28px; margin-bottom: 20px; color: #ff4d4d; }
-        button { 
-            padding: 15px 30px; 
-            font-size: 18px; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            background: linear-gradient(45deg, #ff4d4d, #f9cb28); 
-            color: white; 
-            border: none; 
+        h1 { font-size: 2rem; color: #ff4d4d; margin-bottom: 30px; text-shadow: 0 0 10px rgba(255,77,77,0.5); }
+        
+        #playBtn {
+            padding: 15px 45px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff4d4d, #f9cb28);
+            border: none;
+            border-radius: 50px;
+            color: white;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 77, 77, 0.4);
+            transition: 0.3s;
         }
-        .heart { font-size: 50px; margin-top: 20px; animation: pulse 1s infinite; }
+        #playBtn:active { transform: scale(0.95); }
+        
+        .heart { font-size: 60px; margin-top: 25px; animation: pulse 1s infinite alternate; }
         @keyframes pulse { to { transform: scale(1.2); } }
     </style>
 </head>
 <body>
 
     <h1>For My Love ❤️</h1>
-    
-    <audio id="player" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+
+    <audio id="mainAudio" loop>
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <button onclick="playMusic()" id="btn">Play Song 🎵</button>
+    <button onclick="startMusic()" id="playBtn">Click to Play Music 🎵</button>
+    
     <div class="heart">❤️</div>
 
     <script>
-        function playMusic() {
-            var audio = document.getElementById("player");
-            var btn = document.getElementById("btn");
+        function startMusic() {
+            var audio = document.getElementById("mainAudio");
+            var btn = document.getElementById("playBtn");
+            
             if (audio.paused) {
-                audio.play();
-                btn.innerHTML = "Pause ⏸️";
+                audio.play().then(() => {
+                    btn.innerHTML = "Enjoy the Music! ⏸️";
+                }).catch(err => {
+                    alert("Macha, GitHub-la 'music.mp3' file innum upload aala nu nenaikuren. Oru vaati check pannu!");
+                });
             } else {
                 audio.pause();
-                btn.innerHTML = "Play Song 🎵";
+                btn.innerHTML = "Click to Play Music 🎵";
             }
         }
     </script>
+
 </body>
 </html>
